@@ -1,9 +1,9 @@
 package it.manza.websocket.endpoint;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.websocket.CloseReason;
 import javax.websocket.Endpoint;
@@ -79,8 +79,8 @@ public class LoggerWebSocketEndpoint extends Endpoint {
 		}
     }
     
-	private static Map<String, LoggerConfig> remoteEndpoints =
-		new HashMap<String, LoggerConfig>();
+	private static ConcurrentMap<String, LoggerConfig> remoteEndpoints =
+		new ConcurrentHashMap<String, LoggerConfig>();
     
 	private static final Log _log =
 		LogFactoryUtil.getLog(LoggerWebSocketEndpoint.class);

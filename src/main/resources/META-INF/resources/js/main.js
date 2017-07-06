@@ -1,6 +1,10 @@
 var websocketModule = (function () {
 	
 	var wsUri = 'ws://' +window.location.host+ '/o/websocket/logger';
+	if(window.location.protocol == "https:"){
+		wsUri = 'wss://' +window.location.host+ '/o/websocket/logger';		
+	}
+	
 	var websocket = new WebSocket(wsUri);
 	
 	websocket.onmessage = function(event) {
