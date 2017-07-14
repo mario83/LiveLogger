@@ -1,4 +1,4 @@
-package it.manza.portlet.portlet;
+package it.manza.portlet;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;

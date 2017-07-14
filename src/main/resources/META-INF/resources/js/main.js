@@ -12,6 +12,11 @@ var websocketModule = (function () {
 	  $("#log-container").scrollTop($("#log-container").prop('scrollHeight'));
 	};
 	
+	websocket.onclose = function(event) {
+	  $('#log-container').append('<div>' + event.data + '</div>');
+	  $("#log-container").scrollTop($("#log-container").prop('scrollHeight'));
+	};
+	
 	return {
 		websocketSend: function(text) {
 			websocket.send(text);	        

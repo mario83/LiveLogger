@@ -59,25 +59,28 @@ public class LoggerWebSocketEndpoint extends Endpoint {
     	remoteEndpoints.remove(session.getId());
     }
     
-    public static void sendBroadcast(String text){
-    	Set<String> keySet = remoteEndpoints.keySet();
-		
-		for (String string : keySet) {
+	public static void sendBroadcast(String text) {
+
+		Set<String> keySet = remoteEndpoints.keySet();
+
+		for (String key : keySet) {
+			LoggerConfig loggerConfig = remoteEndpoints.get(key);
 			try {
-				LoggerConfig loggerConfig = remoteEndpoints.get(string);
-				if(Validator.isNotNull(loggerConfig.getFilter())){
-					if(text.contains(loggerConfig.getFilter())){
-						loggerConfig.getRemoteEndpoint().sendText(text);						
+				if (Validator.isNotNull(loggerConfig.getFilter())) {
+					if (text.contains(loggerConfig.getFilter())) {
+						loggerConfig.getRemoteEndpoint().sendText(text);
 					}
-				} else {
+				}
+				else {
 					loggerConfig.getRemoteEndpoint().sendText(text);
 				}
 			}
 			catch (IOException e) {
-				_log.error(e);
+				remoteEndpoints.remove(key);
+				_log.error(e.getMessage());
 			}
 		}
-    }
+	}
     
 	private static ConcurrentMap<String, LoggerConfig> remoteEndpoints =
 		new ConcurrentHashMap<String, LoggerConfig>();

@@ -1,4 +1,4 @@
-package it.manza.portlet.portlet;
+package it.manza.portlet;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
@@ -21,7 +21,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/view.jsp",
 		"javax.portlet.resource-bundle=content.Language",
-		"javax.portlet.name=it_manza_portlet_portlet_LogViewerPortlet",
+		"javax.portlet.name=it_manza_portlet_LogViewerPortlet",
 		"javax.portlet.security-role-ref=administrator"
 	},
 	service = Portlet.class
